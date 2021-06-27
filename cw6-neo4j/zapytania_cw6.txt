@@ -1,0 +1,67 @@
+// 1
+MATCH path=ShortestPath((m{name:"Darjeeling"})-[*..]->(p{name:"Sandakphu"})) RETURN path
+
+// 2
+MATCH path=shortestPath((m{name:"Darjeeling"})-[*..]->(p{name:"Sandakphu"}))
+where all(r in relationships(path) where r.winter ="true")
+return path
+
+// 3
+MATCH path=(m{name:"Darjeeling"})-[rels*]->(p{name:"Sandakphu"})
+return path, REDUCE(s = 0, r IN rels | s + r.distance) AS totalDistance
+order by totalDistance
+
+// 4
+match (f:Flight)-[r:ORIGIN]->(a:Airport)
+with a, count(r) as flights
+return a.name, flights
+order by flights desc
+
+//5 znajdź wszystkie porty lotnicze, do których da się dolecieć (bezpośrednio lub z
+przesiadkami) z Los Angeles (LAX) wydając mniej niż 3000
+
+// tworzę nowy typ relacji CONNECTION łączyący lotniska wraz z ceną po której się mona dostać do nich (róznymi połączeniami)
+
+match (originAirport:Airport)<-[:ORIGIN]-(flight:Flight)-[:DESTINATION]->(destinationAirport:Airport), (flight)<-[:ASSIGN]-(ticket:Ticket)
+create (originAirport)-[:CONNECTION {price: ticket.price, origin:originAirport.name, dest:destinationAirport.name, class:ticket.class}]->(destinationAirport)
+
+// dla syzbszego (i bardziej logicznego) przeszukania powiązań ograniczam liczbe połączeń do 3 (w warunkach produkcyjnych na bardziej wydajnym serwerze ograniczenie byłoby niekonieczne, lub gdyby ktoś chciał latać z 3+ przesiadkami...)
+
+match path = ((originAirport:Airport {name: "LAX"})-[:CONNECTION*..3]->(destinationAirport:Airport))
+where destinationAirport.name <> "LAX" and all(r in relationships(path) where r.dest <> 'LAX')
+with path, destinationAirport, REDUCE(sum = 0, connection IN relationships(path)|sum + connection.price) AS totalPrice
+where  totalPrice < 3000
+return DISTINCT destinationAirport
+
+// 6
+match path = (lax:Airport {name:"LAX"})-[:CONNECTION*..3]->(dayton:Airport {name:"DAY"})
+where all(r in relationships(path) where r.dest <> 'LAX')
+with path, REDUCE(sum = 0, connection IN relationships(path)|sum + connection.price) AS totalPrice
+return path
+order by totalPrice
+
+// 7
+match path = (a:Airport {name:"LAX"})-[:CONNECTION*..3]->(b:Airport {name:"DAY"})
+where all(r in relationships(path) where r.dest <> 'LAX')
+with path, REDUCE(sum = 0, connection IN relationships(path)|sum + connection.price) AS totalPrice
+return path, totalPrice
+order by totalPrice ASC LIMIT 1
+
+// 8
+match path = (a:Airport {name:"LAX"})-[:CONNECTION*..3]->(b:Airport {name:"DAY"})
+where all(r in relationships(path) where r.dest <> 'LAX' and r.class = "business")
+with path, REDUCE(sum = 0, connection IN relationships(path)|sum + connection.price) AS totalPrice
+return path, totalPrice
+order by totalPrice ASC LIMIT 1
+
+// 9
+match (airport:Airport)-[:ORIGIN|:DESTINATION]-(flight:Flight)
+return distinct flight.airline as Airline, count(distinct airport.name) as howManyAirports
+order by howManyAirports desc
+
+// 10
+match path = (a1)-[:CONNECTION]->(a2)-[:CONNECTION]->(a3)
+where not (a1 = a2 OR a2 = a3 OR a1 = a3)
+with path, REDUCE(sum = 0, connection IN relationships(path)|sum + connection.price) AS totalPrice
+return path, totalPrice
+order by totalPrice ASC LIMIT 1

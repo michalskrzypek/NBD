@@ -1,0 +1,18 @@
+Adding an object with the key: skrzypek
+{'first_name': 'Michal', 'last_name': 'Skrzypek', 'age': 24}
+Added the object successfully!
+
+Get the object with key: skrzypek
+{'first_name': 'Michal', 'last_name': 'Skrzypek', 'age': 24}
+
+Update the object with a key: skrzypek
+The object updated successfully!
+
+Get the updated object with key: skrzypek
+{'first_name': 'Michal', 'last_name': 'Skrzypek', 'age': 24, 'graduated': false}
+
+Delete the object with key: skrzypek
+Object deleted successfully!
+
+Get the deleted object with key: skrzypek
+Object is null...

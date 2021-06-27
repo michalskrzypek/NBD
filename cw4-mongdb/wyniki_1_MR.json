@@ -1,0 +1,50 @@
+MongoDB shell version v4.4.5
+connecting to: mongodb://127.0.0.1:27017/nbd?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("3ac8a3ec-1b22-48f8-8288-52a0913b6c61") }
+MongoDB server version: 4.4.5
+MongoDB shell version v4.4.5
+connecting to: mongodb://127.0.0.1:27017/nbd?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("314d38ee-7f2d-42ae-afb0-4c76749a656e") }
+MongoDB server version: 4.4.5
+{
+	"results" : [
+		{
+			"_id" : "Female",
+			"value" : {
+				"avgHeight" : 167.12617499498276,
+				"avgWeight" : 70.11384105960275
+			}
+		},
+		{
+			"_id" : "Male",
+			"value" : {
+				"avgHeight" : 167.0800817221449,
+				"avgWeight" : 70.00180785329881
+			}
+		}
+	],
+	"ok" : 1
+}
+MongoDB shell version v4.4.5
+connecting to: mongodb://127.0.0.1:27017/nbd?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("02b45d9c-421b-4b0e-a55c-18da1d0980d2") }
+MongoDB server version: 4.4.5
+{
+	"results" : [
+		{
+			"_id" : "Female",
+			"value" : {
+				"avgHeight" : 167.12617499498276,
+				"avgWeight" : 70.11384105960275
+			}
+		},
+		{
+			"_id" : "Male",
+			"value" : {
+				"avgHeight" : 167.0800817221449,
+				"avgWeight" : 70.00180785329881
+			}
+		}
+	],
+	"ok" : 1
+}

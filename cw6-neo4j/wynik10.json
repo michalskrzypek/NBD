@@ -1,0 +1,92 @@
+﻿[
+  {
+    "path": {
+"start": {
+"identity": 208,
+"labels": [
+          "Airport"
+        ],
+"properties": {
+"name": "MSN"
+        }
+      },
+"end": {
+"identity": 255,
+"labels": [
+          "Airport"
+        ],
+"properties": {
+"name": "GRR"
+        }
+      },
+"segments": [
+        {
+          "start": {
+"identity": 208,
+"labels": [
+              "Airport"
+            ],
+"properties": {
+"name": "MSN"
+            }
+          },
+          "relationship": {
+"identity": 2089,
+"start": 208,
+"end": 194,
+"type": "CONNECTION",
+"properties": {
+"dest": "ORD",
+"class": "economy",
+"price": 88.5,
+"origin": "MSN"
+            }
+          },
+          "end": {
+"identity": 194,
+"labels": [
+              "Airport"
+            ],
+"properties": {
+"name": "ORD"
+            }
+          }
+        },
+        {
+          "start": {
+"identity": 194,
+"labels": [
+              "Airport"
+            ],
+"properties": {
+"name": "ORD"
+            }
+          },
+          "relationship": {
+"identity": 2696,
+"start": 194,
+"end": 255,
+"type": "CONNECTION",
+"properties": {
+"dest": "GRR",
+"class": "economy",
+"price": 108.0,
+"origin": "ORD"
+            }
+          },
+          "end": {
+"identity": 255,
+"labels": [
+              "Airport"
+            ],
+"properties": {
+"name": "GRR"
+            }
+          }
+        }
+      ],
+"length": 2.0
+    },
+    "totalPrice": 196.5
+  }
+]

@@ -1,0 +1,32 @@
+MongoDB shell version v4.4.5
+connecting to: mongodb://127.0.0.1:27017/nbd?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("14cfc721-0324-47f0-8c53-f81dbc054cfc") }
+MongoDB server version: 4.4.5
+[
+	{
+		"_id" : "Male",
+		"avgHeight" : NumberDecimal("167.0800817221447079928243970500299"),
+		"avgWeight" : NumberDecimal("70.00180785329878413394458839944190")
+	},
+	{
+		"_id" : "Female",
+		"avgHeight" : NumberDecimal("167.1261749949829420028095524784267"),
+		"avgWeight" : NumberDecimal("70.11384105960264900662251655629139")
+	}
+]
+MongoDB shell version v4.4.5
+connecting to: mongodb://127.0.0.1:27017/nbd?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("33a9e809-ef2d-49f3-b0bf-d566cb4d8d56") }
+MongoDB server version: 4.4.5
+[
+	{
+		"_id" : "Female",
+		"avgHeight" : NumberDecimal("167.1261749949829420028095524784267"),
+		"avgWeight" : NumberDecimal("70.11384105960264900662251655629139")
+	},
+	{
+		"_id" : "Male",
+		"avgHeight" : NumberDecimal("167.0800817221447079928243970500299"),
+		"avgWeight" : NumberDecimal("70.00180785329878413394458839944190")
+	}
+]

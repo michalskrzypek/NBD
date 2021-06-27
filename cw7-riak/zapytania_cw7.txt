@@ -1,0 +1,33 @@
+//1
+curl -i -XPUT -H "Content-Type: application/json" -d '{"first_name": "Mike", "last_name": "Skrzypek", "age": 24, "graduated": false}' http://localhost:8098/buckets/s23460/keys/skrzypek
+curl -i -XPUT -H "Content-Type: application/json" -d '{"first_name": "LeBron", "last_name": "James", "age": 36, "graduated": false}' http://localhost:8098/buckets/s23460/keys/james
+curl -i -XPUT -H "Content-Type: application/json" -d '{"first_name": "Devin", "last_name": "Booker", "age": 35, "graduated": true}' http://localhost:8098/buckets/s23460/keys/booker
+curl -i -XPUT -H "Content-Type: application/json" -d '{"first_name": "Tyron", "last_name": "Lue", "age": 45, "graduated": true}' http://localhost:8098/buckets/s23460/keys/lue
+curl -i -XPUT -H "Content-Type: application/json" -d '{"first_name": "Christian", "last_name": "Jackson", "age": 18, "graduated": true}' http://localhost:8098/buckets/s23460/keys/jackson
+
+//2
+curl -i -XGET  http://localhost:8098/buckets/s23460/keys/skrzypek
+
+//3
+curl -i -XPUT -H "Content-Type: application/json" -d '{"first_name": "Mike", "last_name": "Skrzypek", "age": 24, "graduated": false, "major": "Computer Science"}' http://localhost:8098/buckets/s23460/keys/skrzypek
+
+//4
+curl -i -XPUT -H "Content-Type: application/json" -d '{"first_name": "LeBron", "last_name": "James", "age": 36}' http://localhost:8098/buckets/s23460/keys/james
+
+//5
+curl -i -XPUT -H "Content-Type: application/json" -d '{"first_name": "Tyron", "last_name": "Lue", "age": 66, "graduated": true}' http://localhost:8098/buckets/s23460/keys/lue
+
+//6
+curl -i -XDELETE http://localhost:8098/buckets/s23460/keys/booker
+
+//7
+curl -i -XGET  http://localhost:8098/buckets/s23460/keys/something
+
+//8
+curl -i -XPOST -H "Content-Type: application/json" -d '{"greeting": "hello"}' http://localhost:8098/buckets/s23460/keys
+
+//9
+curl -i -XGET  http://localhost:8098/buckets/s23460/keys/6ppZkMcO93iaJD4uOR2hsR8HDV6
+
+//10
+curl -i -XDELETE http://localhost:8098/buckets/s23460/keys/6ppZkMcO93iaJD4uOR2hsR8HDV6

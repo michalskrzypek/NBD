@@ -1,0 +1,60 @@
+1. MATCH (n:Movie) return n
+
+2. match (p:Person{name:"Hugo Weaving"})-[r:ACTED_IN]->(m:Movie) return m
+
+3. match (p:Person{name:"Hugo Weaving"})-[r:ACTED_IN]->(m:Movie)
+with m as MovieWithHugo
+match (d:Person)-[r2:DIRECTED]->(MovieWithHugo)
+return d
+
+4. match (p:Person{name:"Hugo Weaving"})-[r:ACTED_IN]->(m:Movie)
+with m as MovieWithHugo
+match (d:Person)-[r2:ACTED_IN]->(MovieWithHugo)
+where not d.name = "Hugo Weaving" 
+return d
+
+5. match (a:Person)-[r:ACTED_IN]->(m:Movie{title:"The Matrix"})
+with a as ActorsOfMatrix
+match (ActorsOfMatrix)-[r2:ACTED_IN]->(m2:Movie)
+return distinct m2
+
+6. match (p:Person)-[:ACTED_IN]->(m:Movie)
+return p, count(m)
+
+7. match (p:Person)-[:WROTE]->(m:Movie)
+with p,m
+match (p)-[:DIRECTED]->(m)
+return p, m
+
+8. match (p:Person{name:"Keanu Reeves"})-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person{name:"Hugo Weaving"})
+return m
+
+9.  
+create (m:Movie{title:"Captain America: The First Avenger", released:2011, tagline:"Steve Rogers, a rejected military soldier, transforms into Captain America after taking a dose of a Super-Soldier serum. But being Captain America comes at a price as he attempts to take down a war monger and a terrorist organization." }) return m
+
+match (m:Movie{title:"Captain America: The First Avenger"})
+with m as CA
+create p=(chris:Person{name:"Chris Evans",born: 1978})-[:ACTED_IN]->(CA)
+return p
+
+match (m:Movie{title:"Captain America: The First Avenger"})
+with m as CA
+create p=(chris:Person{name:"Tommy Lee Jones",born: 1967})-[:ACTED_IN]->(CA)
+return p
+
+match (m:Movie{title:"Captain America: The First Avenger"}),(a:Person{name:"Hugo Weaving"})
+create p=(a)-[:ACTED_IN]->(m)
+return p
+
+match (m:Movie{title:"Captain America: The First Avenger"})
+with m as CA
+create p=(joe:Person{name:"Joe Johnston",born: 1968})-[:DIRECTED]->(CA)
+return p
+
+match (m:Movie{title:"Captain America: The First Avenger"})
+with m as CA
+create p=(joe:Person{name:"Christopher Marcus",born: 1971})-[:WROTE]->(CA)
+return p
+
+match path= (m:Movie{title:"Captain America: The First Avenger"})<-[:ACTED_IN|:DIRECTED|:WROTE]-(p:Person)
+return path
